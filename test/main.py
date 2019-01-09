@@ -19,6 +19,8 @@ CELL_SIZE = 16  # cell (tile) size in pixels CELL_SIZE x CELL_SIZE
 CELL_RADIUS = 4 # circle radius for 
 SQUARE_SIZE = 3 # square size SQUARE_SIZE x SQUARE_SIZE
 
+num_of_robots = 3
+
 class WorldCanvas(object):
     STATE_OPEN = 0x01
     STATE_CLOSED = 0x02
@@ -315,7 +317,6 @@ class MainSettingsDock(QDockWidget):
         
 class MainWindow(QMainWindow):
     
-    
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent)
         # main settings dock
@@ -374,14 +375,14 @@ class MainWindow(QMainWindow):
     def update_algo(self):
         algo_ind=self.main_settings.algo_combo.currentIndex()
         print ("algo set to", algo_ind)
+        #if algo_ind == 0:
+        #   self.algo_t = kapal.algo.Dijkstra
         if algo_ind == 0:
-            self.algo_t = kapal.algo.Dijkstra
-        if algo_ind == 1:
             self.algo_t = kapal.algo.AStar        
-        if algo_ind == 2:
+        if algo_ind == 1:
             self.algo_t = kapal.algo.PRM
-        if algo_ind == 3:
-            self.algo_t = kapal.algo.AStar  
+        # if algo_ind == 3:
+        #   self.algo_t = kapal.algo.AStar
 
     def random_world(self, width=WIDTH):
         # set up world
@@ -401,16 +402,19 @@ class MainWindow(QMainWindow):
         
         self.world_cond = [ [0]*len(self.c[0]) for i in range(len(self.c)) ]
         world_ind = self.main_settings.world_combo.currentIndex()
-        
-        if world_ind == 0:
-            self.world = kapal.world.World2d(self.c, state_type = kapal.state.State2dAStar,diags=False)
-        if world_ind == 1:
-            self.world = kapal.world.World2d(self.c, state_type = kapal.state.State2dAStar,diags=True)
+
+        self.world = []
+        for i in range(num_of_robots):
+            if world_ind == 0:
+                self.world.append(kapal.world.World2d(self.c, state_type = kapal.state.State2dAStar,diags=False))
+            if world_ind == 1:
+                self.world.append(kapal.world.World2d(self.c, state_type = kapal.state.State2dAStar,diags=True))
         
 
     def reset_world(self):
-        self.world_cond = [ [0]*len(self.c[0]) for i in range(len(self.c)) ]
-        self.world.reset()
+        self.world_cond = [[0] * len(self.c[0]) for i in range(len(self.c))]
+        for world in self.world:
+            world.reset()
 
     def plan(self):
         # update algorithm name from GUI
@@ -430,27 +434,34 @@ class MainWindow(QMainWindow):
             start_y_3 = self.world_settings.start_y_box_3.value()
 
             states = [
-                self.world.state(start_y, start_x),
-                self.world.state(start_y_2, start_x_2),
-                self.world.state(start_y_3, start_x_3)
+                self.world[0].state(start_y, start_x),
+                self.world[1].state(start_y_2, start_x_2),
+                self.world[2].state(start_y_3, start_x_3)
             ]
 
             goal_y = self.world_settings.goal_y_box.value() 
             goal_x = self.world_settings.goal_x_box.value()
-            
+
+            goal = [
+                self.world[0].state(goal_y, goal_x),
+                self.world[1].state(goal_y, goal_x),
+                self.world[2].state(goal_y, goal_x)
+            ]
+
             self.world_cond[start_y][start_x] |= WorldCanvas.STATE_START
             self.world_cond[goal_y][goal_x] |= WorldCanvas.STATE_GOAL
-            algo_obj = self.algo_t(self.world, states,
-                    self.world.state(goal_y, goal_x),False)
+            algo_obj = self.algo_t(self.world, states, goal, False)
             
             num_popped = 0
-            pl_list=algo_obj.plan()
+            pl_list = algo_obj.plan()
             for s in pl_list:
-                self.world_cond[s.y][s.x] |= WorldCanvas.STATE_EXPANDED
+                # self.world_cond[s.y][s.x] |= WorldCanvas.STATE_EXPANDED
                 num_popped += 1
             print (num_popped)
-            for s in algo_obj.path():
-                self.world_cond[s.y][s.x] |= WorldCanvas.STATE_PATH
+            paths = algo_obj.path()
+            for path in paths:
+                for s in path:
+                    self.world_cond[s.y][s.x] |= WorldCanvas.STATE_PATH
 
 
     def paintEvent(self, event):

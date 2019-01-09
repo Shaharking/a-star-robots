@@ -40,8 +40,9 @@ class AStar(Algo):
             - http://en.wikipedia.org/wiki/Consistent_heuristic
     """
 
-    def __init__(self, world, start=None, goal=None, backwards=False):
+    def __init__(self, world, start=None, goal = None, backwards=False):
         Algo.__init__(self, world, start, goal)
+        self.goal = [g for g in goal]
         self.backwards = backwards
         self.open = []
 
@@ -52,6 +53,7 @@ class AStar(Algo):
         return list(self.__plan_gen())
 
     def __plan_gen(self):
+        print (self.goal)
         """
         Plans the optimal path via a generator.
 
@@ -64,32 +66,44 @@ class AStar(Algo):
         easy debugging; it is usually unsafe to use the yielded
         states as the path.
         """
-        self.world.reset()      # forget previous search's g-vals
+        for world in self.world:
+            world.reset()      # forget previous search's g-vals
+
         goal = self.goal
-        succ = self.world.succ  # successor function
+        # succ = self.world.succ  # successor function
 
         if self.backwards:
             self.goal.g = 0
             self.open = [self.goal]
             goal = self.start
-            succ = self.world.pred  # flip map edges
+            # succ = self.world.pred  # flip map edges
         else:
             for start in self.start:
                 start.g = 0
             self.open = [[s] for s in self.start]
 
         # A*
-        s = None
-        while s is not goal and len(self.open) > 0:            
-            s = heapq.heappop(self.open)                                  
-            for n, cost in succ(s):
-                if n.g > s.g + cost:
-                    # s improves n
-                    n.g = s.g + cost
-                    n.h = self.h(n, goal)
-                    n.pr = s                    
-                    heapq.heappush(self.open, n)                    
-            yield s
+        heapy = [[None], [None], [None]]
+        every_robot_found_goal = False
+        while not every_robot_found_goal:
+            steps = {}
+            for robot_index in range(len(heapy)):
+                s = heapy[robot_index]
+                if s is not goal[robot_index] and len(self.open[robot_index]) > 0:
+                    s = heapq.heappop(self.open[robot_index])
+                    for n, cost in self.world[robot_index].succ(s):
+                        if n.g > s.g + cost:
+                            # s improves n
+                            n.g = s.g + cost
+                            n.h = self.h(n, goal[robot_index], robot=robot_index)
+                            n.pr = s
+                            heapq.heappush(self.open[robot_index], n)
+                    steps[robot_index] = s
+            yield steps
+            every_robot_found_goal = all(heapy[robot_index] is goal[robot_index]
+                                         or len(self.open[robot_index]) == 0
+                                         for robot_index in range(len(heapy))
+                                         )
         #print('End of algo planning')
 
 
@@ -99,17 +113,32 @@ class AStar(Algo):
 
         This method assumes that 
         """
+
         p = []
-        s = self.goal
-        if self.backwards:
-            s = self.start
-        while s is not None:
-            p.append(s)
-            if s is not None:
-                s = s.pr
+        #s = self.goal
+        #if self.backwards:
+        #    s = self.start
+        #while s is not None:
+        #    p.append(s)
+        #    if s is not None:
+        #        s = s.pr
+        # return p
+
+        for goal_index in range(len(self.world)):
+            row = []
+            s = self.goal[goal_index]
+            if self.backwards:
+                s = self.start
+
+            while s is not None:
+                row.append(s)
+                if s is not None:
+                    s = s.pr
+            p.append(row)
+#
         return p
         
-    def h(self, s1, s2, h_func=None):
+    def h(self, s1, s2, h_func=None, robot=0):
         """
         Returns the heuristic value between s1 and s2.
 
@@ -117,7 +146,7 @@ class AStar(Algo):
         h_func is passed in.
         """
         if h_func is None:
-            return self.world.h(s1, s2)
+            return self.world[robot].h(s1, s2)
         else:
             return h_func(s1, s2)
 
