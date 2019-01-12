@@ -27,7 +27,9 @@ class WorldCanvas(object):
     STATE_EXPANDED = 0x04
     STATE_START = 0x10
     STATE_GOAL = 0x20
-    STATE_PATH = 0x80
+    STATE_PATH_ROBOT_1 = 0x80
+    STATE_PATH_ROBOT_2 = 0x81
+    STATE_PATH_ROBOT_3 = 0x82
 
     COLOR_RED = (255, 0, 0, 255)
     COLOR_REDTRAN = (255, 0, 0, 128)
@@ -37,6 +39,11 @@ class WorldCanvas(object):
     COLOR_YELLOW = (255, 255, 0, 255)
     COLOR_TRANSPARENT = (0, 0, 0, 0)
 
+    ROBOT_INDEX_TO_STATE = {
+        0: (0, 255, 0, 255),
+        1: (255, 0, 0, 255),
+        2: (0, 0, 255, 255)
+    }
     def __init__(self):
         self.painter = QPainter()
 
@@ -70,13 +77,13 @@ class WorldCanvas(object):
         finally:
             self.painter.end()
 
-    def draw_line(self, x1=0, y1=0, x2=0, y2=0, pen=None):
+    def draw_line(self, x1=0, y1=0, x2=0, y2=0, pen=None, color = COLOR_GREEN, margin = 0):
         if pen is None:
             pen = QPen(QtCore.Qt.black, 2, QtCore.Qt.DashLine)
-            pen.setColor(QColor(*WorldCanvas.COLOR_GREEN))
+            pen.setColor(QColor(*color))
 
         # to put line in center of cell
-        padding = self.cell_size/2
+        padding = self.cell_size/2 + margin
 
         try:
             if not self.painter.begin(self):
@@ -112,6 +119,7 @@ class World2dCanvas(QWidget, WorldCanvas):
             painter=None):
         QWidget.__init__(self, parent)
         WorldCanvas.__init__(self)
+        self.paths = [[],[],[]]
 
         # cost of cells in the world
         if world_cost is None:
@@ -153,12 +161,12 @@ class World2dCanvas(QWidget, WorldCanvas):
                 
                 # show state of cell
 
-                if self.world_cond[r][c] & WorldCanvas.STATE_PATH:
-                    # current cell is part of path
-                    if c_prev != -1:
-                        self.draw_line(c, r, c_prev, r_prev)
-                    c_prev = c
-                    r_prev = r
+                #if self.world_cond[r][c] & self.world_cond[r][c] >= WorldCanvas.STATE_PATH_ROBOT_1 and self.world_cond[r][c] <= WorldCanvas.STATE_PATH_ROBOT_1_AND_2_AND_3:
+                #    # current cell is part of path
+                #    if c_prev != -1:
+                #        self.draw_line(c, r, c_prev, r_prev, state = self.world_cond[r][c])
+                #    c_prev = c
+                #    r_prev = r
 
                 # draw start point
                 if self.world_cond[r][c] & WorldCanvas.STATE_START:
@@ -174,6 +182,23 @@ class World2dCanvas(QWidget, WorldCanvas):
                     # current cell was expanded
                     self.draw_square(c, r, color=WorldCanvas.COLOR_RED,
                             size=SQUARE_SIZE)
+
+        # Draw Each path alone:
+        for idx in range(len(self.paths)):
+            robot_path = self.paths[idx]
+            c_prev = -1
+            for path in robot_path:
+                c = path.x
+                r = path.y
+                margin = 0
+                if idx > 0:
+                    margin = ((-1)**idx) * 4
+                if c_prev != -1:
+                    self.draw_line(c, r, c_prev, r_prev, color = self.ROBOT_INDEX_TO_STATE[idx], margin=margin)
+                c_prev = c
+                r_prev = r
+
+        c_prev = -1
 
 class World2dSettingsDock(QDockWidget):
     """Settings for World2d. - TBD"""
@@ -409,12 +434,15 @@ class MainWindow(QMainWindow):
                 self.world.append(kapal.world.World2d(self.c, state_type = kapal.state.State2dAStar,diags=False))
             if world_ind == 1:
                 self.world.append(kapal.world.World2d(self.c, state_type = kapal.state.State2dAStar,diags=True))
-        
+
+        if (hasattr(self, 'worldcanvas')):
+            self.worldcanvas.paths = [[], [], []]
 
     def reset_world(self):
         self.world_cond = [[0] * len(self.c[0]) for i in range(len(self.c))]
         for world in self.world:
             world.reset()
+        self.worldcanvas.paths = [[], [], []]
 
     def plan(self):
         # update algorithm name from GUI
@@ -449,6 +477,9 @@ class MainWindow(QMainWindow):
             ]
 
             self.world_cond[start_y][start_x] |= WorldCanvas.STATE_START
+            self.world_cond[start_y_2][start_x_2] |= WorldCanvas.STATE_START
+            self.world_cond[start_y_3][start_x_3] |= WorldCanvas.STATE_START
+
             self.world_cond[goal_y][goal_x] |= WorldCanvas.STATE_GOAL
             algo_obj = self.algo_t(self.world, states, goal, False)
             
@@ -459,9 +490,41 @@ class MainWindow(QMainWindow):
                 num_popped += 1
             print (num_popped)
             paths = algo_obj.path()
-            for path in paths:
-                for s in path:
-                    self.world_cond[s.y][s.x] |= WorldCanvas.STATE_PATH
+            self.worldcanvas.paths = paths
+            #for idx in range(len(paths)):
+                #path = paths[idx]
+                #for s in path:
+                    #self.set_word_cond(s, idx)
+
+
+    def set_word_cond(self,s, index):
+        if not self.world_cond[s.y][s.x]:
+            if index == 0:
+                self.world_cond[s.y][s.x] = WorldCanvas.STATE_PATH_ROBOT_1
+
+            if index == 1:
+                self.world_cond[s.y][s.x] = WorldCanvas.STATE_PATH_ROBOT_2
+
+            if index == 2:
+                self.world_cond[s.y][s.x] = WorldCanvas.STATE_PATH_ROBOT_3
+
+        elif (self.world_cond[s.y][s.x] == WorldCanvas.STATE_PATH_ROBOT_1):
+
+            if index == 1:
+                self.world_cond[s.y][s.x] = WorldCanvas.STATE_PATH_ROBOT_1_AND_2
+
+            if index == 2:
+                self.world_cond[s.y][s.x] = WorldCanvas.STATE_PATH_ROBOT_1_AND_3
+
+        elif (self.world_cond[s.y][s.x] == WorldCanvas.STATE_PATH_ROBOT_2):
+
+            if index == 2:
+                self.world_cond[s.y][s.x] = WorldCanvas.STATE_PATH_ROBOT_2_AND_3
+
+        elif self.world_cond[s.y][s.x] == WorldCanvas.STATE_PATH_ROBOT_1_AND_2:
+            if index == 2:
+                self.world_cond[s.y][s.x] = WorldCanvas.STATE_PATH_ROBOT_1_AND_2_AND_3
+
 
 
     def paintEvent(self, event):
