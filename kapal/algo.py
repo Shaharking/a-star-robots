@@ -85,12 +85,46 @@ class AStar(Algo):
         # A*
         heapy = [[None], [None], [None]]
         every_robot_found_goal = False
+        trace_steps = {0: [], 1: [], 2: [] }
+        iteration = 1
         while not every_robot_found_goal:
             steps = {}
+
+            if any(len(open) == 0 for open in self.open):
+                break
+
+            robot_skips = [False, False, False]
             for robot_index in range(len(heapy)):
                 s = heapy[robot_index]
+                other_robot_current_location = []
+                for i in range(len(heapy)):
+                    if i != robot_index and len(trace_steps[i]) > 0:
+                        last_step = (trace_steps[i])[-1]
+                        other_robot_current_location.append((last_step, i))
+
                 if s is not goal[robot_index] and len(self.open[robot_index]) > 0:
-                    s = heapq.heappop(self.open[robot_index])
+                    unmoveable_places = []
+                    found_place = False
+                    while not found_place:
+                        is_position_taken = False
+                        if len(self.open[robot_index]) == 0:
+                            print('robot {0} got to dead end'.format(robot_index))
+                            break
+
+                        s = heapq.heappop(self.open[robot_index])
+                        for (place, i) in other_robot_current_location:
+                            if place.x == s.x and place.y == s.y:
+                                print('robot {0} is blocked by robot {1} - iteration {2}'.format(robot_index, i, iteration))
+                                is_position_taken = True
+
+                        if is_position_taken == True:
+                            unmoveable_places.append(s)
+                        else:
+                            found_place = True
+
+                    for p in unmoveable_places:
+                        heapq.heappush(self.open[robot_index], p)
+
                     for n, cost in self.world[robot_index].succ(s):
                         if n.g > s.g + cost:
                             # s improves n
@@ -99,7 +133,9 @@ class AStar(Algo):
                             n.pr = s
                             heapq.heappush(self.open[robot_index], n)
                     steps[robot_index] = s
+                    trace_steps[robot_index].append(s)
             yield steps
+            iteration = iteration + 1
             every_robot_found_goal = all(heapy[robot_index] is goal[robot_index]
                                          or len(self.open[robot_index]) == 0
                                          for robot_index in range(len(heapy))
