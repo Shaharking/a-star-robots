@@ -5,6 +5,7 @@ from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+
 BASE_PATH = os.path.abspath(os.path.dirname(__file__))
 print(BASE_PATH)
 sys.path.insert(0,BASE_PATH.split('\\test')[0])
@@ -84,7 +85,6 @@ class WorldCanvas(object):
 
         # to put line in center of cell
         padding = self.cell_size/2 + margin
-
         try:
             if not self.painter.begin(self):
                 raise Exception("painter failed to begin().")
@@ -120,6 +120,9 @@ class World2dCanvas(QWidget, WorldCanvas):
         QWidget.__init__(self, parent)
         WorldCanvas.__init__(self)
         self.paths = [[],[],[]]
+        self.c_prev = -1
+        self.r_prev = -1
+        self.steps_shown = 0
 
         # cost of cells in the world
         if world_cost is None:
@@ -186,19 +189,38 @@ class World2dCanvas(QWidget, WorldCanvas):
         # Draw Each path alone:
         for idx in range(len(self.paths)):
             robot_path = self.paths[idx]
-            c_prev = -1
-            for path in robot_path:
-                c = path.x
-                r = path.y
-                margin = 0
-                if idx > 0:
-                    margin = ((-1)**idx) * 4
-                if c_prev != -1:
-                    self.draw_line(c, r, c_prev, r_prev, color = self.ROBOT_INDEX_TO_STATE[idx], margin=margin)
-                c_prev = c
-                r_prev = r
+            self.c_prev = -1
+            self.r_prev = -1
+            for robot_path_idx in range(len(robot_path)):
+                real_path_idx = len(robot_path) - 1 - robot_path_idx
+                path = robot_path[real_path_idx]
+                if robot_path_idx > self.steps_shown:
+                    break
+                self.draw_robot_movment(path, idx)
+                #QtCore.QTimer.singleShot(120, lambda: self.draw_robot_movment(path, idx))
+                # c_prev, r_prev = path.x, path.y
+            # QtCore.QTimer.singleShot(10000, lambda: self.increase_steps_shown())
 
-        c_prev = -1
+
+
+    def increase_steps_shown(self):
+        self.steps_shown = self.steps_shown + 1
+
+    def draw_robot_movment(self, path, idx):
+        #if path == None:
+        #    return
+
+        c = path.x
+        r = path.y
+        margin = 0
+        if idx > 0:
+            margin = ((-1) ** idx) * 4
+        if self.c_prev != -1:
+            self.draw_line(c, r, self.c_prev, self.r_prev, color=self.ROBOT_INDEX_TO_STATE[idx], margin=margin)
+
+        #return c,r
+        self.c_prev = c
+        self.r_prev = r
 
 class World2dSettingsDock(QDockWidget):
     """Settings for World2d. - TBD"""
@@ -389,10 +411,17 @@ class MainWindow(QMainWindow):
         reset_button.setStatusTip('Randomize World')
         reset_button.triggered.connect(self.random_world)
 
+        forward_button = QAction(QIcon('icons/forward.png'),
+                'Forward', self)
+        forward_button.setShortcut('Ctrl+Y')
+        forward_button.setStatusTip('Forward Planning')
+        forward_button.triggered.connect(self.forward_plan)
+
         toolbar = self.addToolBar('Control')
         toolbar.addAction(reset_button)
         toolbar.addAction(start_button)
         toolbar.addAction(stop_button)
+        toolbar.addAction(forward_button)
 
         # status bar
         self.statusBar()
@@ -443,6 +472,10 @@ class MainWindow(QMainWindow):
         for world in self.world:
             world.reset()
         self.worldcanvas.paths = [[], [], []]
+        self.worldcanvas.steps_shown = 0
+
+    def forward_plan(self):
+        self.worldcanvas.increase_steps_shown()
 
     def plan(self):
         # update algorithm name from GUI

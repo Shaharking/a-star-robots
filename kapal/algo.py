@@ -116,6 +116,7 @@ class AStar(Algo):
                             if place.x == s.x and place.y == s.y:
                                 print('robot {0} is blocked by robot {1} - iteration {2}'.format(robot_index, i, iteration))
                                 is_position_taken = True
+                                steps[robot_index] = None
 
                         if is_position_taken == True:
                             unmoveable_places.append(s)
