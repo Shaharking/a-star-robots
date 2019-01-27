@@ -1,1 +1,4 @@
+.idea/**
+.idea
+kapal/__pycache__/**
 venv

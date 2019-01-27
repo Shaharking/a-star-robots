@@ -325,7 +325,7 @@ class MainSettingsDock(QDockWidget):
     """Dock for choosing algorithm and world."""
 
     world_list = ["2D 4 Neighbors", "2D 8 Neighbors"]
-    algo_list = ["A*", "PRM"]
+    algo_list = ["A*", "Dijkstra"]
     heuristic_list = ["Manhattan", "Euclidean"]
 
     def __init__(self):
@@ -429,12 +429,12 @@ class MainWindow(QMainWindow):
     def update_algo(self):
         algo_ind=self.main_settings.algo_combo.currentIndex()
         print ("algo set to", algo_ind)
-        #if algo_ind == 0:
-        #   self.algo_t = kapal.algo.Dijkstra
+        if algo_ind == 1:
+           self.algo_t = kapal.algo.Dijkstra
         if algo_ind == 0:
             self.algo_t = kapal.algo.AStar        
-        if algo_ind == 1:
-            self.algo_t = kapal.algo.PRM
+        #if algo_ind == 1:
+        #   self.algo_t = kapal.algo.PRM
         # if algo_ind == 3:
         #   self.algo_t = kapal.algo.AStar
 

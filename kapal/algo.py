@@ -1,4 +1,6 @@
 import heapq
+import numpy as np
+import random
 import sys
 import os
 BASE_PATH = os.path.abspath(os.path.dirname(__file__))
@@ -126,15 +128,18 @@ class AStar(Algo):
                     for p in unmoveable_places:
                         heapq.heappush(self.open[robot_index], p)
 
-                    for n, cost in self.world[robot_index].succ(s):
-                        if n.g > s.g + cost:
-                            # s improves n
-                            n.g = s.g + cost
-                            n.h = self.h(n, goal[robot_index], robot=robot_index)
-                            n.pr = s
-                            heapq.heappush(self.open[robot_index], n)
-                    steps[robot_index] = s
-                    trace_steps[robot_index].append(s)
+                    try:
+                        for n, cost in self.world[robot_index].succ(s):
+                            if n.g > s.g + cost:
+                                # s improves n
+                                n.g = s.g + cost
+                                n.h = self.h(n, goal[robot_index], robot=robot_index)
+                                n.pr = s
+                                heapq.heappush(self.open[robot_index], n)
+                        steps[robot_index] = s
+                        trace_steps[robot_index].append(s)
+                    except Exception as e:
+                        print(str(e))
             yield steps
             iteration = iteration + 1
             every_robot_found_goal = all(heapy[robot_index] is goal[robot_index]
@@ -196,6 +201,7 @@ class Dijkstra(AStar):
     """
     def __init__(self, world, start=None, goal=None, backwards=True):
         Algo.__init__(self, world, start, goal)
+        self.goal = [g for g in goal]
         self.backwards = backwards
         self.open = []
 
@@ -204,7 +210,7 @@ class Dijkstra(AStar):
         
         """
 
-    def h(self, s1, s2, h_func=None):
+    def h(self, s1, s2, h_func=None, robot=0):
         """
         Returns the heuristic value equal to zero.
 
@@ -218,14 +224,46 @@ class PRM(AStar):
     Assumptions:
         - non-negative edge weights
     """
+
+    def distance(self, co1, co2):
+        dist = ((co1[0] - co2[0]) ** 2) + ((co1[1] - co2[1]) ** 2)
+        return dist
+
     def __init__(self, world, start=None, goal=None, backwards=True):
         Algo.__init__(self, world, start, goal)
         self.backwards = backwards
         self.open = []
         
-        self.nsamp=200
-        self.sdist=1
-        
+        self.nsamp=60
+        self.sdist=100
+        self.points = []
+
+        self.new_maps = []
+
+        #coordinates = []
+        #first_world = world[0].costs
+        #width = len(first_world)
+        #height = width
+
+        #for i in range(width):
+        #    for j in range(height):
+        #        self.points.append((i,j))
+
+        #self.points = random.sample(self.points, self.nsamp)
+        #self.points.sort()
+        #for p in self.points:
+        #    temp = []
+        #    for p2 in self.points:
+        #        if p == p2:
+        #            continue
+        #        temp.append(self.distance(p, p2))
+
+        #    index_sort = np.argsort(temp)
+        #    for z in index_sort[:10]:
+        #        if temp[z] <= self.sdist:
+
+        #    print (index_sort)
+        #print(self.points)
         
 
     def h(self, s1, s2, h_func=None):
