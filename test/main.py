@@ -186,6 +186,24 @@ class World2dCanvas(QWidget, WorldCanvas):
                     self.draw_square(c, r, color=WorldCanvas.COLOR_RED,
                             size=SQUARE_SIZE)
 
+        # Insert stops whenever robots come to another robot place
+        last_steps = [0,0,0]
+        for robot_index in range(len(self.paths)):
+            robot_path = self.paths[robot_index]
+
+            for robot_path_idx in range(len(robot_path)):
+                real_path_idx = len(robot_path) - 1 - robot_path_idx
+                last_steps[robot_index] = real_path_idx
+                current_robo_path = robot_path[real_path_idx]
+                for other_robot in range(len(self.paths)):
+                    if other_robot != robot_index:
+                        other_robot_paths = self.paths[other_robot]
+                        last_other_robo_path = other_robot_paths[last_steps[other_robot]]
+                        if (last_other_robo_path.x == current_robo_path.x and
+                            last_other_robo_path.y == current_robo_path.y):
+                            
+
+
         # Draw Each path alone:
         for idx in range(len(self.paths)):
             robot_path = self.paths[idx]
@@ -194,6 +212,7 @@ class World2dCanvas(QWidget, WorldCanvas):
             for robot_path_idx in range(len(robot_path)):
                 real_path_idx = len(robot_path) - 1 - robot_path_idx
                 path = robot_path[real_path_idx]
+
                 if robot_path_idx > self.steps_shown:
                     break
                 self.draw_robot_movment(path, idx)
@@ -521,7 +540,7 @@ class MainWindow(QMainWindow):
             for s in pl_list:
                 # self.world_cond[s.y][s.x] |= WorldCanvas.STATE_EXPANDED
                 num_popped += 1
-            print (num_popped)
+            print ('It searched %d vertex for the 3 robots' %(num_popped))
             paths = algo_obj.path()
             self.worldcanvas.paths = paths
             #for idx in range(len(paths)):
