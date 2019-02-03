@@ -189,10 +189,21 @@ class World2dCanvas(QWidget, WorldCanvas):
         # Insert stops whenever robots come to another robot place
         last_steps = [0,0,0]
         for robot_index in range(len(self.paths)):
-            robot_path = self.paths[robot_index]
+            last_steps[robot_index] = len(self.paths[robot_index]) - 1
 
-            for robot_path_idx in range(len(robot_path)):
-                real_path_idx = len(robot_path) - 1 - robot_path_idx
+        step_index = 0
+        while step_index <= max(last_steps):
+            #for robot_path_idx in range(len(robot_path) - 1):
+
+             for robot_index in range(len(self.paths)):
+                robot_path = self.paths[robot_index]
+
+                if step_index > len(robot_path) - 2:
+                    # Anything expect from the goal
+                    continue
+
+                real_path_idx = len(robot_path) - 1 - step_index
+                previous_step_index = last_steps[robot_index]
                 last_steps[robot_index] = real_path_idx
                 current_robo_path = robot_path[real_path_idx]
                 for other_robot in range(len(self.paths)):
@@ -201,7 +212,11 @@ class World2dCanvas(QWidget, WorldCanvas):
                         last_other_robo_path = other_robot_paths[last_steps[other_robot]]
                         if (last_other_robo_path.x == current_robo_path.x and
                             last_other_robo_path.y == current_robo_path.y):
-                            
+                            # We added a pause by adding the same previous step to his current step
+                            robot_path.insert(previous_step_index, robot_path[previous_step_index])
+                            last_steps[robot_index] = previous_step_index
+                            break
+             step_index = step_index + 1
 
 
         # Draw Each path alone:
