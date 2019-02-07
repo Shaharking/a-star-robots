@@ -48,6 +48,9 @@ class AStar(Algo):
         self.backwards = backwards
         self.open = []
 
+    def get_algo_name(self):
+        return 'A*'
+
     def plan(self):
         """
         Plans and returns the optimal path, from start to goal.
@@ -198,6 +201,9 @@ class Dijkstra(AStar):
 
         """
         return 0
+
+    def get_algo_name(self):
+        return 'Dijkstra'
 
 class PRM(AStar):
     """

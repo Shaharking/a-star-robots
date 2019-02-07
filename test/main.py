@@ -5,9 +5,9 @@ from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+from functools import reduce
 
 BASE_PATH = os.path.abspath(os.path.dirname(__file__))
-print(BASE_PATH)
 sys.path.insert(0,BASE_PATH.split('\\test')[0])
 import kapal
 import kapal.algo
@@ -462,7 +462,6 @@ class MainWindow(QMainWindow):
 
     def update_algo(self):
         algo_ind=self.main_settings.algo_combo.currentIndex()
-        print ("algo set to", algo_ind)
         if algo_ind == 1:
            self.algo_t = kapal.algo.Dijkstra
         if algo_ind == 0:
@@ -555,8 +554,13 @@ class MainWindow(QMainWindow):
             for s in pl_list:
                 # self.world_cond[s.y][s.x] |= WorldCanvas.STATE_EXPANDED
                 num_popped += 1
+
+            print (self.algo_t.__name__)
             print ('It searched %d vertex for the 3 robots' %(num_popped))
             paths = algo_obj.path()
+            total_distance = [len(path) for path in paths]
+            print('distance for 3 robots')
+            print (total_distance)
             self.worldcanvas.paths = paths
             #for idx in range(len(paths)):
                 #path = paths[idx]

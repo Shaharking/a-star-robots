@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87f7fbbe-eb3f-4718-8a70-dba45c835528" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/GUI_kapal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GUI_kapal.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kapal/algo.py" beforeDir="false" afterPath="$PROJECT_DIR$/kapal/algo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -71,43 +71,60 @@
     <session id="968244329">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.3" value="3" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="153" />
           <entry key="gitignore" value="8" />
-          <entry key="py" value="4964" />
+          <entry key="md" value="199" />
+          <entry key="py" value="5247" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+          <entry key="Markdown" value="199" />
           <entry key="PLAIN_TEXT" value="8" />
-          <entry key="Python" value="5117" />
+          <entry key="Python" value="5400" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gitignore" value="1" />
-          <entry key="py" value="6" />
+          <entry key="md" value="1" />
+          <entry key="py" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="6" />
+          <entry key="Python" value="11" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kapal/tools.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kapal/world.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -120,28 +137,42 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/main.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kapal/state.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kapal/shape.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="216" column="45" selection-start-line="216" selection-start-column="45" selection-end-line="216" selection-end-column="45" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-                <marker date="1549226499514" expanded="true" signature="20473:21507" ph="..." />
-                <marker date="1549226499514" expanded="true" signature="21535:21544" ph="..." />
-              </folding>
+            <state relative-caret-position="160">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Downloads/PRM_Algo.py">
+        <entry file="file://$PROJECT_DIR$/test/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-139">
-              <caret line="32" selection-start-line="32" selection-end-line="32" />
+            <state relative-caret-position="268">
+              <caret line="147" lean-forward="true" selection-start-line="147" selection-end-line="147" />
               <folding>
-                <element signature="e#298#311#0" expanded="true" />
+                <element signature="e#0#9#0" expanded="true" />
+                <marker date="1549305270847" expanded="true" signature="20624:21658" ph="..." />
+                <marker date="1549305270847" expanded="true" signature="21686:21695" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="480">
+                <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -149,10 +180,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kapal/algo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="105" lean-forward="true" selection-start-line="105" selection-end-line="105" />
+            <state relative-caret-position="2040">
+              <caret line="106" column="29" selection-start-line="106" selection-start-column="29" selection-end-line="106" selection-end-column="29" />
+              <folding>
+                <marker date="1549304700576" expanded="true" signature="1017:1023" ph="..." />
+                <marker date="1549304700576" expanded="true" signature="1265:1291" ph="..." />
+              </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kapal/__init__.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -165,45 +205,9 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/1102824264/PyQt5/QtWidgets/QWidget.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20460">
-              <caret line="1025" column="8" selection-start-line="1025" selection-start-column="8" selection-end-line="1025" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/1102824264/PyQt5/QtGui/QPainter.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/1102824264/PyQt5/QtCore/QTimer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1260">
-              <caret line="66" column="8" selection-start-line="66" selection-start-column="8" selection-end-line="66" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/1102824264/PyQt5/QtCore/QEventLoop.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1460">
-              <caret line="76" column="8" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="60">
               <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
             </state>
           </provider>
@@ -220,10 +224,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>reset</find>
-      <find>rand_widget</find>
-      <find>start_y_box</find>
-      <find>Dijkstra</find>
       <find>state</find>
       <find>h</find>
       <find>__plan_gen</find>
@@ -249,6 +249,11 @@
       <find>.path(</find>
       <find>algo_ind</find>
       <find>path</find>
+      <find>reduce</find>
+      <find>algo</find>
+      <find>print</find>
+      <find>Man</find>
+      <find>Manhattan</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -269,14 +274,15 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/kapal/algo.py" />
         <option value="$PROJECT_DIR$/test/main.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="10" />
-    <option name="y" value="20" />
-    <option name="width" value="1346" />
-    <option name="height" value="688" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="656" />
+    <option name="height" value="456" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -295,11 +301,6 @@
             <path>
               <item name="a-star-robots" type="b2602c69:ProjectViewProjectNode" />
               <item name="a-star-robots" type="462c0819:PsiDirectoryNode" />
-              <item name="kapal" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="a-star-robots" type="b2602c69:ProjectViewProjectNode" />
-              <item name="a-star-robots" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -307,6 +308,11 @@
               <item name="a-star-robots" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="icons" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="a-star-robots" type="b2602c69:ProjectViewProjectNode" />
+              <item name="a-star-robots" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -400,13 +406,13 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25237092" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25237092" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49923548" weight="0.32569557" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39761648" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49923548" weight="0.32502708" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39653304" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -468,17 +474,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/kapal/algo.py</url>
-          <line>247</line>
+          <line>253</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/kapal/algo.py</url>
-          <line>233</line>
+          <line>239</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/kapal/algo.py</url>
-          <line>246</line>
+          <line>252</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
@@ -497,11 +503,22 @@
       <configuration name="PythonConfigurationType">
         <watch expression="robot_path" language="Python" />
         <watch expression="len(robot_path)" language="Python" />
+        <watch expression="self.algo_t.__name__" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>self.algo_t.__name__</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>self.algo_t</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>len(robot_path)</expression-string>
         <language-id>Python</language-id>
@@ -542,16 +559,6 @@
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>robot_index</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>trace_steps</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
@@ -584,23 +591,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/1102824264/builtins.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/random.py" />
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/276076641/builtins.py" />
+    <entry file="file://$USER_HOME$/Downloads/PRM_Algo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84240">
-          <caret line="4212" column="8" selection-start-line="4212" selection-start-column="8" selection-end-line="4212" selection-end-column="8" />
+        <state relative-caret-position="-139">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kapal/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kapal/state.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/random.py" />
     <entry file="file://$PROJECT_DIR$/kapal/map_helper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
+        <state relative-caret-position="100">
           <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
@@ -608,10 +610,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kapal/shape.py">
+    <entry file="file://$PROJECT_DIR$/kapal/tools.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="200">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -625,40 +630,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/kapal/state.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/276076641/builtins.py" />
-    <entry file="file://$PROJECT_DIR$/kapal/tools.py">
+    <entry file="file://$PROJECT_DIR$/kapal/shape.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="160">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kapal/algo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="105" lean-forward="true" selection-start-line="105" selection-end-line="105" />
+        <state relative-caret-position="2040">
+          <caret line="106" column="29" selection-start-line="106" selection-start-column="29" selection-end-line="106" selection-end-column="29" />
+          <folding>
+            <marker date="1549304700576" expanded="true" signature="1017:1023" ph="..." />
+            <marker date="1549304700576" expanded="true" signature="1265:1291" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kapal/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/1102824264/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84240">
+          <caret line="4212" column="8" selection-start-line="4212" selection-start-column="8" selection-end-line="4212" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="216" column="45" selection-start-line="216" selection-start-column="45" selection-end-line="216" selection-end-column="45" />
+        <state relative-caret-position="268">
+          <caret line="147" lean-forward="true" selection-start-line="147" selection-end-line="147" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-            <marker date="1549226499514" expanded="true" signature="20473:21507" ph="..." />
-            <marker date="1549226499514" expanded="true" signature="21535:21544" ph="..." />
+            <marker date="1549305270847" expanded="true" signature="20624:21658" ph="..." />
+            <marker date="1549305270847" expanded="true" signature="21686:21695" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="480">
+            <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
