@@ -5,9 +5,9 @@ from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+from functools import reduce
 
 BASE_PATH = os.path.abspath(os.path.dirname(__file__))
-print(BASE_PATH)
 sys.path.insert(0,BASE_PATH.split('\\test')[0])
 import kapal
 import kapal.algo
@@ -186,6 +186,39 @@ class World2dCanvas(QWidget, WorldCanvas):
                     self.draw_square(c, r, color=WorldCanvas.COLOR_RED,
                             size=SQUARE_SIZE)
 
+        # Insert stops whenever robots come to another robot place
+        last_steps = [0,0,0]
+        for robot_index in range(len(self.paths)):
+            last_steps[robot_index] = len(self.paths[robot_index]) - 1
+
+        step_index = 0
+        while step_index <= max(last_steps):
+            #for robot_path_idx in range(len(robot_path) - 1):
+
+             for robot_index in range(len(self.paths)):
+                robot_path = self.paths[robot_index]
+
+                if step_index > len(robot_path) - 2:
+                    # Anything expect from the goal
+                    continue
+
+                real_path_idx = len(robot_path) - 1 - step_index
+                previous_step_index = last_steps[robot_index]
+                last_steps[robot_index] = real_path_idx
+                current_robo_path = robot_path[real_path_idx]
+                for other_robot in range(len(self.paths)):
+                    if other_robot != robot_index:
+                        other_robot_paths = self.paths[other_robot]
+                        last_other_robo_path = other_robot_paths[last_steps[other_robot]]
+                        if (last_other_robo_path.x == current_robo_path.x and
+                            last_other_robo_path.y == current_robo_path.y):
+                            # We added a pause by adding the same previous step to his current step
+                            robot_path.insert(previous_step_index, robot_path[previous_step_index])
+                            last_steps[robot_index] = previous_step_index
+                            break
+             step_index = step_index + 1
+
+
         # Draw Each path alone:
         for idx in range(len(self.paths)):
             robot_path = self.paths[idx]
@@ -194,6 +227,7 @@ class World2dCanvas(QWidget, WorldCanvas):
             for robot_path_idx in range(len(robot_path)):
                 real_path_idx = len(robot_path) - 1 - robot_path_idx
                 path = robot_path[real_path_idx]
+
                 if robot_path_idx > self.steps_shown:
                     break
                 self.draw_robot_movment(path, idx)
@@ -428,7 +462,6 @@ class MainWindow(QMainWindow):
 
     def update_algo(self):
         algo_ind=self.main_settings.algo_combo.currentIndex()
-        print ("algo set to", algo_ind)
         if algo_ind == 1:
            self.algo_t = kapal.algo.Dijkstra
         if algo_ind == 0:
@@ -521,8 +554,13 @@ class MainWindow(QMainWindow):
             for s in pl_list:
                 # self.world_cond[s.y][s.x] |= WorldCanvas.STATE_EXPANDED
                 num_popped += 1
-            print (num_popped)
+
+            print (self.algo_t.__name__)
+            print ('It searched %d vertex for the 3 robots' %(num_popped))
             paths = algo_obj.path()
+            total_distance = [len(path) for path in paths]
+            print('distance for 3 robots')
+            print (total_distance)
             self.worldcanvas.paths = paths
             #for idx in range(len(paths)):
                 #path = paths[idx]
