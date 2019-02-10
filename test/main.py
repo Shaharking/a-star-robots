@@ -197,6 +197,9 @@ class World2dCanvas(QWidget, WorldCanvas):
         while step_index <= max_last_steps:
             #for robot_path_idx in range(len(robot_path) - 1):
 
+             if max_last_steps > 10000:
+                 print('WTF')
+
              for robot_index in range(len(self.paths)):
                 robot_path = self.paths[robot_index]
 
@@ -483,7 +486,7 @@ class MainWindow(QMainWindow):
         max_val=kapal.inf
         rand_vi=self.world_settings.rand_widget.isChecked()
         if rand_vi:
-            self.c = kapal.tools.rand_cost_map_shapes(height, width, min_val, max_val,min_num_of_obstacles = 20, max_num_of_obstacles = 20)
+            self.c = kapal.tools.rand_cost_map_shapes(height, width, min_val, max_val,min_num_of_obstacles = 30, max_num_of_obstacles = 30)
             # self.c = kapal.tools.rand_cost_map(width, width, min_val, max_val,
             #    flip=True, flip_chance=.1)
         else:

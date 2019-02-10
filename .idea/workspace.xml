@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87f7fbbe-eb3f-4718-8a70-dba45c835528" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/kapal/algo.py" beforeDir="false" afterPath="$PROJECT_DIR$/kapal/algo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -82,14 +83,14 @@
           <entry key="Python Console" value="153" />
           <entry key="gitignore" value="8" />
           <entry key="md" value="199" />
-          <entry key="py" value="5483" />
+          <entry key="py" value="5692" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Markdown" value="199" />
           <entry key="PLAIN_TEXT" value="8" />
-          <entry key="Python" value="5636" />
+          <entry key="Python" value="5845" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -148,15 +149,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="209" selection-start-line="209" selection-end-line="209" />
+            <state relative-caret-position="182">
+              <caret line="194" column="10" lean-forward="true" selection-start-line="194" selection-start-column="10" selection-end-line="194" selection-end-column="10" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-                <marker date="1549793727833" expanded="true" signature="20764:20772" ph="..." />
-                <marker date="1549793727833" expanded="true" signature="20800:20809" ph="..." />
+                <marker date="1549796800503" expanded="true" signature="20835:20843" ph="..." />
+                <marker date="1549796800503" expanded="true" signature="20871:20880" ph="..." />
               </folding>
             </state>
           </provider>
@@ -174,14 +175,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kapal/algo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2040">
-              <caret line="106" column="29" selection-start-line="106" selection-start-column="29" selection-end-line="106" selection-end-column="29" />
+            <state relative-caret-position="248">
+              <caret line="171" column="28" lean-forward="true" selection-start-line="171" selection-start-column="28" selection-end-line="171" selection-end-column="28" />
               <folding>
-                <marker date="1549304700576" expanded="true" signature="1017:1023" ph="..." />
-                <marker date="1549304700576" expanded="true" signature="1265:1291" ph="..." />
+                <marker date="1549797557978" expanded="true" signature="1017:1023" ph="..." />
+                <marker date="1549797557978" expanded="true" signature="1265:1291" ph="..." />
               </folding>
             </state>
           </provider>
@@ -221,7 +222,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>algo_t</find>
       <find>goal =</find>
       <find>STATE_PATH</find>
       <find>world_cond</find>
@@ -251,6 +251,7 @@
       <find>STATE_CLOSED</find>
       <find>COLOR_DARKBLUE</find>
       <find>DARK_RED</find>
+      <find>HEIGHT</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -269,9 +270,9 @@
         <option value="$PROJECT_DIR$/kapal/tools.py" />
         <option value="$PROJECT_DIR$/kapal/world.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/kapal/algo.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/test/main.py" />
+        <option value="$PROJECT_DIR$/kapal/algo.py" />
       </list>
     </option>
   </component>
@@ -294,6 +295,11 @@
             <path>
               <item name="a-star-robots" type="b2602c69:ProjectViewProjectNode" />
               <item name="a-star-robots" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="a-star-robots" type="b2602c69:ProjectViewProjectNode" />
+              <item name="a-star-robots" type="462c0819:PsiDirectoryNode" />
+              <item name="kapal" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="a-star-robots" type="b2602c69:ProjectViewProjectNode" />
@@ -401,20 +407,21 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25237092" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49923548" weight="0.32502708" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49894625" visible="true" weight="0.39653304" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49894625" weight="0.32502708" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49841937" visible="true" weight="0.39653304" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49923548" weight="0.32827735" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50105375" side_tool="true" visible="true" weight="0.39653304" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015806" side_tool="true" visible="true" weight="0.39653304" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -470,28 +477,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/kapal/algo.py</url>
-          <line>253</line>
+          <line>262</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/kapal/algo.py</url>
-          <line>239</line>
+          <line>248</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/kapal/algo.py</url>
-          <line>252</line>
+          <line>261</line>
           <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/test/main.py</url>
-          <line>230</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/test/main.py</url>
-          <line>217</line>
-          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -505,9 +502,57 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="self.world[0]" language="Python" />
+        <watch expression="self.world[0].size" language="Python" />
+        <watch expression="len(self.world[0].costs)" language="Python" />
+        <watch expression="len(self.world[0].costs[0])" language="Python" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>l[s.y][s.x] == 1</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>l[s.y][s.x]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>len(self.world[0].costs[0])</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>len(self.world[0].costs)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>self.world[0].costs.size()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>self.world[0].costs</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>self.world[0].size</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>self.world[0]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>self.algo_t.__name__</expression-string>
         <language-id>Python</language-id>
@@ -515,46 +560,6 @@
       </expression>
       <expression>
         <expression-string>self.algo_t</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>len(robot_path)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>robot_path</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>robot_path[21]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>robot_path[15]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>robot_path[16]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>robot_path[previous_step_index]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>trace_steps[robot_index][-1]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>trace_steps[robot_index]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -629,17 +634,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kapal/algo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2040">
-          <caret line="106" column="29" selection-start-line="106" selection-start-column="29" selection-end-line="106" selection-end-column="29" />
-          <folding>
-            <marker date="1549304700576" expanded="true" signature="1017:1023" ph="..." />
-            <marker date="1549304700576" expanded="true" signature="1265:1291" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kapal/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -679,12 +673,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="209" selection-start-line="209" selection-end-line="209" />
+        <state relative-caret-position="182">
+          <caret line="194" column="10" lean-forward="true" selection-start-line="194" selection-start-column="10" selection-end-line="194" selection-end-column="10" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-            <marker date="1549793727833" expanded="true" signature="20764:20772" ph="..." />
-            <marker date="1549793727833" expanded="true" signature="20800:20809" ph="..." />
+            <marker date="1549796800503" expanded="true" signature="20835:20843" ph="..." />
+            <marker date="1549796800503" expanded="true" signature="20871:20880" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kapal/algo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="171" column="28" lean-forward="true" selection-start-line="171" selection-start-column="28" selection-end-line="171" selection-end-column="28" />
+          <folding>
+            <marker date="1549797557978" expanded="true" signature="1017:1023" ph="..." />
+            <marker date="1549797557978" expanded="true" signature="1265:1291" ph="..." />
           </folding>
         </state>
       </provider>

@@ -157,9 +157,18 @@ class AStar(Algo):
             if self.backwards:
                 s = self.start
 
+            height = len(self.world[0].costs)
+            width = len(self.world[0].costs[0])
+            l = np.zeros((height, width))
+
             while s is not None:
                 row.append(s)
+
+                if l[s.y][s.x] == 1:
+                    break
+
                 if s is not None:
+                    l[s.y][s.x] = 1
                     s = s.pr
             p.append(row)
 #
