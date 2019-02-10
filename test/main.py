@@ -15,7 +15,8 @@ import kapal.state
 import kapal.world
 import kapal.tools
 import copy
-WIDTH = 35      # pitch size WIDTH x WIDTH
+WIDTH = 50      # pitch size WIDTH x WIDTH
+HEIGHT = 35
 CELL_SIZE = 16  # cell (tile) size in pixels CELL_SIZE x CELL_SIZE
 CELL_RADIUS = 4 # circle radius for 
 SQUARE_SIZE = 3 # square size SQUARE_SIZE x SQUARE_SIZE
@@ -35,7 +36,7 @@ class WorldCanvas(object):
     COLOR_RED = (255, 0, 0, 255)
     COLOR_REDTRAN = (255, 0, 0, 128)
     COLOR_BLUE = (0, 80, 255, 255)
-    COLOR_DARKBLUE = (0, 0, 128, 255)
+    COLOR_BLACK = (0,0 ,0 ,255)
     COLOR_GREEN = (0, 255, 0, 255)
     COLOR_YELLOW = (255, 255, 0, 255)
     COLOR_TRANSPARENT = (0, 0, 0, 0)
@@ -43,7 +44,7 @@ class WorldCanvas(object):
     ROBOT_INDEX_TO_STATE = {
         0: (0, 255, 0, 255),
         1: (255, 0, 0, 255),
-        2: (0, 0, 255, 255)
+        2: (255, 204, 0, 255)
     }
     def __init__(self):
         self.painter = QPainter()
@@ -157,7 +158,7 @@ class World2dCanvas(QWidget, WorldCanvas):
             for c in range(len(self.world_cost[r])):
                 if self.world_cost[r][c] == kapal.inf:
                     # obstacle
-                    self.draw_square(c, r, color=WorldCanvas.COLOR_DARKBLUE)
+                    self.draw_square(c, r, color=WorldCanvas.COLOR_BLACK)
                 else:
                     # free space
                     self.draw_square(c, r, color=WorldCanvas.COLOR_BLUE)
@@ -192,7 +193,8 @@ class World2dCanvas(QWidget, WorldCanvas):
             last_steps[robot_index] = len(self.paths[robot_index]) - 1
 
         step_index = 0
-        while step_index <= max(last_steps):
+        max_last_steps = max(last_steps)
+        while step_index <= max_last_steps:
             #for robot_path_idx in range(len(robot_path) - 1):
 
              for robot_index in range(len(self.paths)):
@@ -217,6 +219,7 @@ class World2dCanvas(QWidget, WorldCanvas):
                             last_steps[robot_index] = previous_step_index
                             break
              step_index = step_index + 1
+             max_last_steps = max(last_steps)
 
 
         # Draw Each path alone:
@@ -407,7 +410,7 @@ class MainWindow(QMainWindow):
         self.algo_t = kapal.algo.AStar
         self.world_t = kapal.world.World2d
         self.state_t = kapal.state.State2dAStar
-        self.random_world(WIDTH)
+        self.random_world(WIDTH, HEIGHT)
 
         # general GUI settings
         self.setUnifiedTitleAndToolBarOnMac(True)
@@ -471,7 +474,7 @@ class MainWindow(QMainWindow):
         # if algo_ind == 3:
         #   self.algo_t = kapal.algo.AStar
 
-    def random_world(self, width=WIDTH):
+    def random_world(self, width=WIDTH, height=HEIGHT):
         # set up world
         if not width:
             width=WIDTH
@@ -480,11 +483,11 @@ class MainWindow(QMainWindow):
         max_val=kapal.inf
         rand_vi=self.world_settings.rand_widget.isChecked()
         if rand_vi:
-            self.c = kapal.tools.rand_cost_map_shapes(width, width, min_val, max_val,min_num_of_obstacles = 20, max_num_of_obstacles = 20)
+            self.c = kapal.tools.rand_cost_map_shapes(height, width, min_val, max_val,min_num_of_obstacles = 20, max_num_of_obstacles = 20)
             # self.c = kapal.tools.rand_cost_map(width, width, min_val, max_val,
             #    flip=True, flip_chance=.1)
         else:
-            self.c = kapal.tools.const_map(width, width, min_val, max_val,
+            self.c = kapal.tools.const_map(height, width, min_val, max_val,
                 wall=True)
         
         self.world_cond = [ [0]*len(self.c[0]) for i in range(len(self.c)) ]
@@ -551,8 +554,10 @@ class MainWindow(QMainWindow):
             
             num_popped = 0
             pl_list = algo_obj.plan()
-            for s in pl_list:
-                # self.world_cond[s.y][s.x] |= WorldCanvas.STATE_EXPANDED
+            for j in pl_list:
+                for key in j:
+                    s = j[key]
+                    self.world_cond[s.y][s.x] |= WorldCanvas.STATE_EXPANDED
                 num_popped += 1
 
             print (self.algo_t.__name__)
@@ -562,39 +567,11 @@ class MainWindow(QMainWindow):
             print('distance for 3 robots')
             print (total_distance)
             self.worldcanvas.paths = paths
+
             #for idx in range(len(paths)):
                 #path = paths[idx]
                 #for s in path:
                     #self.set_word_cond(s, idx)
-
-
-    def set_word_cond(self,s, index):
-        if not self.world_cond[s.y][s.x]:
-            if index == 0:
-                self.world_cond[s.y][s.x] = WorldCanvas.STATE_PATH_ROBOT_1
-
-            if index == 1:
-                self.world_cond[s.y][s.x] = WorldCanvas.STATE_PATH_ROBOT_2
-
-            if index == 2:
-                self.world_cond[s.y][s.x] = WorldCanvas.STATE_PATH_ROBOT_3
-
-        elif (self.world_cond[s.y][s.x] == WorldCanvas.STATE_PATH_ROBOT_1):
-
-            if index == 1:
-                self.world_cond[s.y][s.x] = WorldCanvas.STATE_PATH_ROBOT_1_AND_2
-
-            if index == 2:
-                self.world_cond[s.y][s.x] = WorldCanvas.STATE_PATH_ROBOT_1_AND_3
-
-        elif (self.world_cond[s.y][s.x] == WorldCanvas.STATE_PATH_ROBOT_2):
-
-            if index == 2:
-                self.world_cond[s.y][s.x] = WorldCanvas.STATE_PATH_ROBOT_2_AND_3
-
-        elif self.world_cond[s.y][s.x] == WorldCanvas.STATE_PATH_ROBOT_1_AND_2:
-            if index == 2:
-                self.world_cond[s.y][s.x] = WorldCanvas.STATE_PATH_ROBOT_1_AND_2_AND_3
 
 
 
